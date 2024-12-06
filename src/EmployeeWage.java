@@ -5,9 +5,7 @@ public class EmployeeWage {
     private  static final int workingDaysPerMonth = 20;
     private  static final int totalWorkingHrs = 100;
 
-    public static void main(String[] args) {
-        System.out.println("Welcome to Employee Wage Computation Program!");
-
+    public static void EmployeeWageCalculator(){
         int empHrs = 0, empWagePerMonth = 0, totalWorkingDays = 0, totalEmployeeHrs = 0;
 
         //UC-6 Total Hours added
@@ -42,5 +40,10 @@ public class EmployeeWage {
             System.out.println("Employee's Current Total Wage is: " + empWagePerMonth);
         }
         System.out.println("Employee's wage per Month is: " + empWagePerMonth);
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Welcome to Employee Wage Computation Program!");
+        EmployeeWageCalculator();
     }
 }
