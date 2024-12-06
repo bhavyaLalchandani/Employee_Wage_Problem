@@ -37,8 +37,9 @@ public class EmployeeWage {
             empWagePerMonth += empWagePerDay;
 
             System.out.println("Employee's Wage per Day is: " + empWagePerDay);
-            System.out.println("Employee's Current Total Working Days are: " + empWagePerDay);
-            System.out.println("Employee's Current Total Working Days are: " + empWagePerDay);
+            System.out.println("Employee's Current Total Working Days are: " + totalWorkingDays);
+            System.out.println("Employee's Current Total Working Hours are: " + totalEmployeeHrs);
+            System.out.println("Employee's Current Total Wage is: " + empWagePerMonth);
         }
         System.out.println("Employee's wage per Month is: " + empWagePerMonth);
     }
