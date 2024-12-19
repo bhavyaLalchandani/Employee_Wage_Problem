@@ -1,11 +1,9 @@
-public class EmployeeWage {
-    // private  static final int isFullTime = 1;
-    // private  static final int isPartTime = 2;
-    // private  static final int wagePerHr = 20;
-    // private  static final int workingDaysPerMonth = 20;
-    // private  static final int totalWorkingHrs = 100;
+import java.util.HashMap;
+import java.util.Map;
 
-    // UC-8 Refactored the code to handle multiple companies using parameters for wagePerHr, workingDaysPerMonth, and maxWorkingHrs.
+public class EmployeeWage {
+    private static Map<String, Integer> companyWages = new HashMap<>();
+
     public static void computeWageForCompany(String companyName, int wagePerHr, int workingDaysPerMonth, int maxWorkingHrs) {
         int empHrs = 0, totalWage = 0, totalWorkingDays = 0, totalEmployeeHrs = 0;
 
@@ -14,26 +12,26 @@ public class EmployeeWage {
             int employeeType = (int) Math.floor(Math.random() * 10) % 3;
 
             switch (employeeType) {
-                case 1 -> { // Full-time
-                    empHrs = 8;
-                }
-                case 2 -> { // Part-time
-                    empHrs = 4;
-                }
+                case 1 -> empHrs = 8; // Full-time
+                case 2 -> empHrs = 4; // Part-time
                 default -> empHrs = 0; // Absent
             }
 
             totalEmployeeHrs += empHrs;
-            int dailyWage = empHrs * wagePerHr;
-            totalWage += dailyWage;
-            System.out.println("The Employee's Current Total Working Days are: " + totalWorkingDays);
-            System.out.println("The Employee's Current Total Working Hours are: " + totalEmployeeHrs);
+            totalWage += empHrs * wagePerHr;
         }
+
+        companyWages.put(companyName, totalWage);
         System.out.println("Total Wage for " + companyName + "'s Employee is: " + totalWage);
+    }
+
+    public static void displayAllWages() {
+        System.out.println("Company Wages: " + companyWages);
     }
 
     public static void main(String[] args) {
         computeWageForCompany("CompanyA", 20, 20, 100);
-        computeWageForCompany("CompanyB", 25, 20, 100);
+        computeWageForCompany("CompanyB", 20, 20, 100);
+        displayAllWages();
     }
 }
