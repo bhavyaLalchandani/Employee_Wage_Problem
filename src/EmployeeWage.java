@@ -1,49 +1,39 @@
 public class EmployeeWage {
-    private  static final int isFullTime = 1;
-    private  static final int isPartTime = 2;
-    private  static final int wagePerHr = 20;
-    private  static final int workingDaysPerMonth = 20;
-    private  static final int totalWorkingHrs = 100;
+    // private  static final int isFullTime = 1;
+    // private  static final int isPartTime = 2;
+    // private  static final int wagePerHr = 20;
+    // private  static final int workingDaysPerMonth = 20;
+    // private  static final int totalWorkingHrs = 100;
 
-    public static void EmployeeWageCalculator(){
-        int empHrs = 0, empWagePerMonth = 0, totalWorkingDays = 0, totalEmployeeHrs = 0;
+    // UC-8 Refactored the code to handle multiple companies using parameters for wagePerHr, workingDaysPerMonth, and maxWorkingHrs.
+    public static void computeWageForCompany(String companyName, int wagePerHr, int workingDaysPerMonth, int maxWorkingHrs) {
+        int empHrs = 0, totalWage = 0, totalWorkingDays = 0, totalEmployeeHrs = 0;
 
-        //UC-6 Total Hours added
-        while(totalEmployeeHrs <= totalWorkingHrs && totalWorkingDays < workingDaysPerMonth) {
+        while (totalEmployeeHrs <= maxWorkingHrs && totalWorkingDays < workingDaysPerMonth) {
             totalWorkingDays++;
-            //RANDOM for type check
             int employeeType = (int) Math.floor(Math.random() * 10) % 3;
-            // UC-4
+
             switch (employeeType) {
-                // UC-1 UC-2 and UC-3
-                case isFullTime -> {
-                    System.out.println("Employee is doing FULL-TIME");
+                case 1 -> { // Full-time
                     empHrs = 8;
                 }
-                case isPartTime -> {
-                    System.out.println("Employee is doing PART-TIME");
+                case 2 -> { // Part-time
                     empHrs = 4;
                 }
-                default -> {
-                    System.out.println("Employee is ABSENT");
-                    empHrs = 0;
-                }
+                default -> empHrs = 0; // Absent
             }
 
             totalEmployeeHrs += empHrs;
-            int empWagePerDay = empHrs * wagePerHr;
-            empWagePerMonth += empWagePerDay;
-
-            System.out.println("Employee's Wage per Day is: " + empWagePerDay);
-            System.out.println("Employee's Current Total Working Days are: " + totalWorkingDays);
-            System.out.println("Employee's Current Total Working Hours are: " + totalEmployeeHrs);
-            System.out.println("Employee's Current Total Wage is: " + empWagePerMonth);
+            int dailyWage = empHrs * wagePerHr;
+            totalWage += dailyWage;
+            System.out.println("The Employee's Current Total Working Days are: " + totalWorkingDays);
+            System.out.println("The Employee's Current Total Working Hours are: " + totalEmployeeHrs);
         }
-        System.out.println("Employee's wage per Month is: " + empWagePerMonth);
+        System.out.println("Total Wage for " + companyName + "'s Employee is: " + totalWage);
     }
 
     public static void main(String[] args) {
-        System.out.println("Welcome to Employee Wage Computation Program!");
-        EmployeeWageCalculator();
+        computeWageForCompany("CompanyA", 20, 20, 100);
+        computeWageForCompany("CompanyB", 25, 20, 100);
     }
 }
